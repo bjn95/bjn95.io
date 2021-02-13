@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Log In
+{% endblock %}
+
+{% block main %}
+<div class="title">
+    <h4> Please login below:</h4>
+</div>
+
+{% if error %}
+<!-- Logged in -->
+<div class="alert alert-info" role="alert">
+  {{ message }}
+</div>
+{% endif %}
+
+<div class="log-box">
+    <form id="loginform" action = "/login" method = "POST">
+        <div class="form-group">
+            <input autocomplete = "off" name = "username" placeholder = "Username" type = "text">
+        </div>
+        <div class="form-group">
+            <input autocomplete = "off" name = "password" placeholder = "Password" type = "text">
+        </div>
+        <div class="form-group">
+            <button class = "btn btn-primary" type = "submit">Log In</button>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

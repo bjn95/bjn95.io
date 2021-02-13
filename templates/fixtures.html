@@ -1,0 +1,89 @@
+{% extends "layout.html" %} <!--Allows common features between each page of the site to be factored out -->
+
+{% block title %}
+    Fixtures & Results
+{% endblock %}
+
+{% block main %}
+
+<h2 class="title">Fixtures & Results</h2>
+<div class="tweet-box"> <!-- Imports twitter feed using twitter embed service, wrapped in a div for easier formatting -->
+  <a class="twitter-timeline" data-width="300" data-height="500" data-theme="light" href="https://twitter.com/OfficialFPL?ref_src=twsrc%5Etfw">Tweets by OfficialFPL</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</div>
+<form action="/fixtures" method="post">
+  <div class="form-group">
+    <select class="form-control" name="gw" onchange="this.form.submit();">
+      <option selected>Select Gameweek:</option>
+      <option value="1">GW1</option>
+      <option value="2">GW2</option>
+      <option value="3">GW3</option>
+      <option value="4">GW4</option>
+      <option value="5">GW5</option>
+      <option value="6">GW6</option>
+      <option value="7">GW7</option>
+      <option value="8">GW8</option>
+      <option value="9">GW9</option>
+      <option value="10">GW10</option>
+      <option value="11">GW11</option>
+      <option value="12">GW12</option>
+      <option value="13">GW13</option>
+      <option value="14">GW14</option>
+      <option value="15">GW15</option>
+      <option value="16">GW16</option>
+      <option value="17">GW17</option>
+      <option value="18">GW18</option>
+      <option value="19">GW19</option>
+      <option value="20">GW20</option>
+      <option value="21">GW21</option>
+      <option value="22">GW22</option>
+      <option value="23">GW23</option>
+      <option value="24">GW24</option>
+      <option value="25">GW25</option>
+      <option value="26">GW26</option>
+      <option value="27">GW27</option>
+      <option value="28">GW28</option>
+      <option value="29">GW29</option>
+      <option value="30">GW30</option>
+      <option value="31">GW31</option>
+      <option value="32">GW32</option>
+      <option value="33">GW33</option>
+      <option value="34">GW34</option>
+      <option value="35">GW35</option>
+      <option value="36">GW36</option>
+      <option value="37">GW37</option>
+      <option value="38">GW38</option>
+    </select>
+  </div>
+</form>
+
+<table class="table table-striped"> <!-- Bootstrap table style -->
+  <thead>
+    <tr>
+      <th scope="col">Round</th>
+      <th scope="col">Date/Time</th>
+      <th scope="col">Home</th>
+      <th></th>
+      <th scope="col">Vs.</th>
+      <th></th>
+      <th scope="col">Away</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    {% for row in rows %} <!-- Creates a loop across the list fed in from the Python app -->
+    <tr>
+      <td>{{ row[0] }}</td> <!-- Selects 0th term of the current row, which corresponds to the date/time, the first column of the table -->
+      <td>{{ row[1] }}</td>
+      <td>{{ row[2] }}</td>
+      <td> <img src = "/static/badges/{{row[2]}}.png" alt="" height=24 width=24></img> </td> <!-- Selects image with name which corresponds to team name -->
+      <td>{{ row[4] }}</td>
+      <td> <img src = "/static/badges/{{row[3]}}.png" alt="" height=24 width=24></img> </td> <!-- All badge images are formatted to be teamname.png -->
+      <td>{{ row[3] }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+
+
+</table>
+
+{% endblock %}
